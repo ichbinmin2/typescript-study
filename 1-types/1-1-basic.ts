@@ -45,7 +45,7 @@
     return undefined;
   }
 
-  // null : 조금 더 명확하게 비어져 있다는 걸 명시하는 상태
+  // null : 조금 더 명확하게 비워져 있다는 걸 명시하는 상태
   let person: null; // 단독적으로 절대 쓰지 않는다.
   let person2: string | null;
 
