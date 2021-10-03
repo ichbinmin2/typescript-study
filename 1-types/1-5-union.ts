@@ -38,8 +38,7 @@
     reason: string;
   };
 
-  // SuccessState | FailState 식으로 함수에 직접 타입을 정의하기 보다는
-  // 한번 더 타입을 정의하는 게 좋다.
+  // SuccessState | FailState 식으로 함수에 직접 타입을 정의하기 보다는 한번 더 타입을 정의하는 게 좋다.
   type LoginState = SuccessState | FailState;
 
   function login(): LoginState {
@@ -55,7 +54,7 @@
   // success -> 🎉 body
   // fail -> 😭 reason
 
-  // A.
+  // A. 나의 답
   // function printLoginState(state: LoginState) {
   //   if (response in state) {
   //     return console.log(`🎉 ${response.body}`);
@@ -64,8 +63,9 @@
   //   }
   // }
 
-  // S.
+  // S. 해답
   function printLoginState(state: LoginState) {
+    //
     if ("response" in state) {
       console.log(`🎉 ${state.response.body}`);
     } else {
