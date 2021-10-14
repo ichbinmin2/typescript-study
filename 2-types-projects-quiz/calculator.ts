@@ -34,10 +34,11 @@ function calculate(command: Command, a: number, b: number): number {
      * 모든 case 에 해당이 되지 않았을 때 <= 를 처리해주는 error 핸들링 값을 추가한다.
      */
     default:
-      throw Error("unknown command");
+      throw new Error("unknown command");
   }
 }
 
+// Q.
 console.log(calculate("add", 1, 3)); // 결과값이 4
 console.log(calculate("substract", 3, 1)); // 결과값이 2
 console.log(calculate("multiply", 4, 2)); // 결과값이 8
