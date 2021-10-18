@@ -1,6 +1,5 @@
 /**
  * 절차지향적으로 커피머신 만들기 *
-
  * 규칙
 1. 커피콩을 가지고 있는 '전역' 변수가 있다.
 2. 커피콩을 가지고 커피를 만드는 함수가 있다.
@@ -12,7 +11,8 @@
 5. typescript를 이용해서 각각의 타입을 지정하고 구현한다.
  */
 
-/**  my A
+/**  
+ * my A
 전역변수 : 커피콩
 {
   let coffeeBean: number = 0;
@@ -50,10 +50,7 @@
 /** ellie Solution */
 {
   // coffee의 형태와 타입 정의
-  type CoffeeCup = {
-    shot: number;
-    hasMilk: boolean;
-  };
+
   // 1 coffee 당 필요한 shot 갯수
   const BEANS_GRAM_PER_SHOT = 7;
   // coffee beans
