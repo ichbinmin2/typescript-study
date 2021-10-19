@@ -203,7 +203,7 @@
 
   /** get 키워드로 fullName을 지정했을 떄 */
   user.firstName = "Kim";
-  console.log(user.fullName); // 출력 결과 : Kim Jiyeon
+  console.log(user.fullName); // => 출력 결과 : Kim Jiyeon
 
   /*
    * 주의할 점
