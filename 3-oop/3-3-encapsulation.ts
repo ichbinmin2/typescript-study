@@ -1,5 +1,5 @@
 {
-  /** encapsulation 캡슐화 시켜보기
+  /* encapsulation 캡슐화 시켜보기 *
    * 규칙
    * 1. 이전의 커피머신 로직을 발전시키기
    * 2. 고양이의 예제를 이용하기
@@ -7,7 +7,6 @@
    */
 
   /****** my A ******
-   
      type Emotion = {
     hasHappy: boolean;
     hasFull: boolean;
@@ -152,4 +151,63 @@
   const maker = CoffeeMaker.makeMachine(2);
   // 2. 외부에서 접근할 수 있는 함수 fillCoffeeBeans() 로 호출.
   maker.fillCoffeeBeans(2);
+
+  /** static 함수를 쓰는 이유
+   * 1. 오브젝트의 생성 주기를 효율적으로 관리
+   * 싱글톤 패턴이나 생성할 수 있는 인스턴스의 갯수 제한 등을 컨트롤 할 수 있게 된다.
+   * 2. 인스턴스를 만드는 로직을 캡슐화
+   * 인스턴스를 생성하는데 복잡한 로직이 추가된다면, static 함수를 통해 이런 복잡성을 심플하게 만들 수 있다.
+   */
+
+  /**  결론
+   * encapsulation 캡슐화는 클래스 내부의 로직들이 외부에서 보이지 않도록 꼭 필요한 것만 노출하겠다는 의미이다.
+   * 이때 클래스의 프로퍼티, 함수 뿐만 아니라 생성자 그리고 상속의 구조를 외부에서 신경쓰지 않도록
+   * static 함수를 이용해서 인스턴스(오브젝트)를 만드는 것도 캡슐화의 하나라고 볼 수 있다.
+   */
+
+  /* --------------------------------------------------------- */
+  /** Getter 와 Setter (게터와 세터)
+   * Getter와 Setter는 일반 변수, 멤버 변수처럼 사용이 가능하며,
+   * 어떠한 계산이 필요할 때 조금 더 유용하게 사용할 수 있다.
+   */
+
+  class User {
+    firstName: string;
+    lastName: string;
+    /** fullName: string; **
+     * 멤버 변수로 fullName을 지정할 경우,
+     * 한번 할당 된 이상, 변하지 않기 때문에
+     * 외부에서 접근하여 변경하고자 해도,
+     * 처음에 접근해서 할당된 값 그대로 출력된다.
+     */
+
+    // 멤버 변수 대신 사용하는 get
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+
+    constructor(firstName: string, lastName: string) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  }
+
+  const user = new User("Min", "Jiyeon");
+  console.log(user.fullName); // 출력 결과 : Min Jiyeon
+
+  /*
+   * 멤버 변수로 fullName을 지정했을 떄
+   * user.firstName = "Kim"; // 접근해서 변경해도 바뀌지 않는다.
+   * console.log(user.fullName); // 출력 결과 : Min Jiyeon
+   */
+
+  /** get 키워드로 fullName을 지정했을 떄 */
+  user.firstName = "Kim";
+  console.log(user.fullName); // 출력 결과 : Kim Jiyeon
+
+  /*
+   * 주의할 점
+   * get은 함수 형태로 정의되었지만
+   * 외부에서 접근할 때는 '멤버 변수'에 접근하듯이 접근해야 한다.
+   */
 }
