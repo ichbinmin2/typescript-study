@@ -172,8 +172,8 @@
    */
 
   class User {
-    firstName: string;
-    lastName: string;
+    // (1) private firstName: string;
+    // (1) private lastName: string;
     /** fullName: string; **
      * 멤버 변수로 fullName을 지정할 경우,
      * 한번 할당 된 이상, 변하지 않기 때문에
@@ -181,20 +181,41 @@
      * 처음에 접근해서 할당된 값 그대로 출력된다.
      */
 
-    // 멤버 변수 대신 사용하는 get
+    // 멤버 변수 대신 사용하는 get 1
     get fullName(): string {
       return `${this.firstName} ${this.lastName}`;
     }
 
-    constructor(firstName: string, lastName: string) {
-      this.firstName = firstName;
-      this.lastName = lastName;
+    private internalAge = 4;
+
+    // 멤버 변수 대신 사용하는 get 2
+    get age(): number {
+      return this.internalAge;
+    }
+
+    // 멤버 변수 대신 사용하는 set
+    set age(num: number) {
+      // 인자의 유효성 검사도 할 수 있을 것이다.
+      if (num < 0) {
+        // 에러 메세지
+        throw new Error("num의 인자가 0 이하입니다.");
+      }
+      this.internalAge = num;
+    }
+
+    constructor(private firstName: string, private lastName: string) {
+      // (1) this.firstName = firstName;
+      // (1) this.lastName = lastName;
+      /** 이처럼 바로 멤버 변수를 설정하고 constructor에서 생성자를 생성하지 않아도
+       * 접근제어자를 설정해두면 firstName에 전달되온 것이 private this.firstName으로 설정이 되고
+       * lastName으로 전달되어 온 것이 private this.lastName으로 설정이 된다.
+       * 멤버변수로 설정해서 생성자로 받아오는 것보다 깔끔한 코드가 된다.
+       */
     }
   }
 
   const user = new User("Min", "Jiyeon");
   console.log(user.fullName); // 출력 결과 : Min Jiyeon
-
   /*
    * 멤버 변수로 fullName을 지정했을 떄
    * user.firstName = "Kim"; // 접근해서 변경해도 바뀌지 않는다.
@@ -202,7 +223,7 @@
    */
 
   /** get 키워드로 fullName을 지정했을 떄 */
-  user.firstName = "Kim";
+  user.age = 6; // => age는 set, get으로 설정했기 때문에 업데이트 할 수 있게 된다.
   console.log(user.fullName); // => 출력 결과 : Kim Jiyeon
 
   /*
